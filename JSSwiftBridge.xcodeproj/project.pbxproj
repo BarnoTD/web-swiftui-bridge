@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		264D3C1E2F95BCDA00E5B2EB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 264D3C1D2F95BCDA00E5B2EB /* README.md */; };
 		26CD00E42F93EFEB003DAA4D /* WebUI in Frameworks */ = {isa = PBXBuildFile; productRef = 26CD00E32F93EFEB003DAA4D /* WebUI */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		264D3C1D2F95BCDA00E5B2EB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		26CD00AF2F93EFA3003DAA4D /* JSSwiftBridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSSwiftBridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CD00BC2F93EFA4003DAA4D /* JSSwiftBridgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSSwiftBridgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CD00C62F93EFA4003DAA4D /* JSSwiftBridgeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSSwiftBridgeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +86,7 @@
 				26CD00BF2F93EFA4003DAA4D /* JSSwiftBridgeTests */,
 				26CD00C92F93EFA4003DAA4D /* JSSwiftBridgeUITests */,
 				26CD00B02F93EFA3003DAA4D /* Products */,
+				264D3C1D2F95BCDA00E5B2EB /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -221,6 +224,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				264D3C1E2F95BCDA00E5B2EB /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
