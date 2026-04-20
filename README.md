@@ -2,6 +2,16 @@
 
 A custom web bridge implementation between JavaScript and Swift, built on top of [cybozu/WebUI](https://github.com/cybozu/WebUI) with additional extensions for streamlined communication.
 
+> [!NOTE]  
+> This sample code aims to solve the challenge: **"Exchange data between a WebView and the app using pure SwiftUI, minimizing reliance on AppKit/UIKit."**
+> 
+> Feedback and contributions to improve this implementation—whether through Issues or Pull Requests—are welcome!
+
+### Minimum Requirements:
+Because the project relies on cybozu/WebUI, some features require the following minimum os versions below:
+* **iOS:** 16.4
+* **macOS:** 13.3
+
 ## Overview
 
 This project provides a type-safe, extensible bridge for sending messages between JavaScript running in WKWebView and Swift code. It leverages WebUI's core functionality while adding custom handlers, message routing, and SwiftUI integrations.
@@ -31,6 +41,9 @@ This project provides a type-safe, extensible bridge for sending messages betwee
 - **Webpages/PageA/webpageA.html**: Sample HTML page with JavaScript that demonstrates sending messages to Swift.
 
 ## Usage
+
+>[!IMPORTANT]
+> In this example we use a local webpage. If you want to interact with an online webpage, make sure to enable Incoming/Outgoing connections in **Target > Signing & Capabilities > All > App Sandbox**
 
 1. Create a WebPageView with a URL or HTML content.
 2. Use the View extension `onJSMessage` to handle incoming messages in your SwiftUI views.
