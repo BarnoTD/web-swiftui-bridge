@@ -2,7 +2,7 @@
 //  JSSwiftBridgeApp.swift
 //  JSSwiftBridge
 //
-//  Created by Hold Apps on 18/4/2026.
+//  Created by Firas Amara on 18/4/2026.
 //
 
 import SwiftUI

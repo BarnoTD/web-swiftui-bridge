@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swift Bridge Sample</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --fg: #111111;
+      --accent: #0a84ff;
+    }
+    [data-theme="dark"] {
+      --bg: #111111;
+      --fg: #f2f2f7;
+      --accent: #64d2ff;
+    }
+    body {
+      margin: 0; font: -apple-system-body system-ui, -apple-system, Helvetica, Arial, sans-serif;
+      background: var(--bg); color: var(--fg);
+    }
+    header { padding: 24px 16px; border-bottom: 1px solid color-mix(in oklab, var(--fg) 20%, transparent); }
+    main { padding: 16px; display: grid; gap: 16px; max-width: 720px; margin: 0 auto; }
+    h1 { margin: 0 0 4px 0; font: -apple-system-headline; }
+    p { margin: 0; opacity: .8; }
+    .card { border: 1px solid color-mix(in oklab, var(--fg) 20%, transparent); border-radius: 12px; padding: 16px; background: color-mix(in oklab, var(--bg) 85%, var(--fg)); }
+    button { -webkit-appearance: none; appearance: none; padding: 10px 14px; border-radius: 10px; border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--fg)); background: var(--accent); color: white; font: inherit; cursor: pointer; }
+    button.secondary { background: transparent; color: var(--fg); }
+    code { padding: 2px 6px; border-radius: 6px; background: color-mix(in oklab, var(--bg) 80%, var(--fg)); }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .log { font-family: ui-monospace, Menlo, monospace; white-space: pre-wrap; word-break: break-word; background: color-mix(in oklab, var(--bg) 90%, var(--fg)); padding: 12px; border-radius: 8px; border: 1px solid color-mix(in oklab, var(--fg) 20%, transparent); max-height: 180px; overflow: auto; }
+  </style>
+</head>
+<body data-theme="light">
+  <header>
+    <h1>Swift ↔︎ Web Bridge</h1>
+    <p>Demonstrates four HTML interaction points with a Swift bridge named <code>nativeBridge</code> and a theme endpoint callable from Swift.</p>
+  </header>
+  <main>
+    <section class="card">
+      <h2>HTML → Swift (4 interaction points)</h2>
+      <div class="row">
+        <button id="btnLog">1) Send log message</button>
+        <button id="btnGetTheme">2) Request theme</button>
+        <button id="btnPick">3) Request item pick</button>
+        <button id="btnCompute">4) Compute sum</button>
+        <button id="btnAlert">5) JS Alert</button>
+      </div>
+      <p style="margin-top:12px">Each button calls a method on <code>window.nativeBridge</code>.</p>
+    </section>
+
+    <section class="card">
+      <h2>Swift → HTML (theme endpoint)</h2>
+      <p>Swift can call <code>applyThemeFromSwift(theme)</code> to set the page theme to <code>"light"</code> or <code>"dark"</code>.</p>
+      <div class="row" style="margin-top:12px">
+        <button class="secondary" onclick="applyThemeFromSwift('light')">Preview Light</button>
+        <button class="secondary" onclick="applyThemeFromSwift('dark')">Preview Dark</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Log</h2>
+      <div id="log" class="log"></div>
+    </section>
+  </main>
+
+  <script>
+    // A small helper to append messages into the page log
+    function log(message) {
+      const area = document.getElementById('log');
+      const time = new Date().toLocaleTimeString();
+      area.textContent += `[${time}] ${message}\n`;
+      area.scrollTop = area.scrollHeight;
+    }
+
+    // Provide a stable bridge that forwards to WebKit's message handler
+    function uuidv4() {
+      // RFC4122-ish UUID for request correlation
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
+
+    function postToNativeBridge(type, payloadObj) {
+       try {
+         const envelope = {
+           type: String(type || ''),
+           payload: JSON.stringify(payloadObj ?? {}),
+           requestId: uuidv4()
+         };
+         if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.nativeBridge && window.webkit.messageHandlers.nativeBridge.postMessage) {
+           window.webkit.messageHandlers.nativeBridge.postMessage(envelope);
+         } else {
+           log('(JS) WebKit nativeBridge handler not available');
+         }
+       } catch (e) {
+         log(`(JS) Error posting to nativeBridge: ${e}`);
+       }
+     }
+
+    // HTML → Swift interaction points (implemented in Swift via message handler)
+    window.nativeBridge = {
+      log: function(message) { postToNativeBridge('log', { message }); },
+      getTheme: function() { postToNativeBridge('getTheme', {}); },
+      pickItem: function(optionsJson) { postToNativeBridge('pickItem', { optionsJson }); },
+      computeSum: function(a, b) { postToNativeBridge('computeSum', { a, b }); },
+      // Swift → HTML theme endpoint (Swift may also call window.nativeBridge.setTheme)
+      setTheme: function(theme) { applyThemeFromSwift(theme); }
+    };
+
+    // Exposed function for Swift to call directly if preferred.
+    // This function applies the theme to the document and logs the change.
+    function applyThemeFromSwift(theme) {
+      const normalized = (theme || '').toLowerCase();
+      if (normalized !== 'light' && normalized !== 'dark') {
+        log(`Ignoring unknown theme: ${theme}`);
+        return;
+      }
+      document.body.setAttribute('data-theme', normalized);
+      log(`Applied theme: ${normalized}`);
+    }
+
+    // Wire up the four HTML → Swift interactions
+    // These now route through the WebKit message handler if available
+    document.getElementById('btnLog').addEventListener('click', () => {
+      const msg = 'Hello from the web page!';
+      try { window.nativeBridge.log(msg); } catch (e) { log(`Error calling nativeBridge.log: ${e}`); }
+    });
+
+    document.getElementById('btnGetTheme').addEventListener('click', () => {
+      try { window.nativeBridge.getTheme(); } catch (e) { log(`Error calling nativeBridge.getTheme: ${e}`); }
+    });
+
+    document.getElementById('btnPick').addEventListener('click', () => {
+      const options = ['Red', 'Green', 'Blue'];
+      try { window.nativeBridge.pickItem(JSON.stringify(options)); } catch (e) { log(`Error calling nativeBridge.pickItem: ${e}`); }
+    });
+
+    document.getElementById('btnCompute').addEventListener('click', () => {
+      const a = 21, b = 21;
+      try { window.nativeBridge.computeSum(a, b); } catch (e) { log(`Error calling nativeBridge.computeSum: ${e}`); }
+    });
+
+    document.getElementById('btnAlert').addEventListener('click', () => {
+      alert('Testing passing alert from Swift');
+    });
+
+    // Optional: start with a theme that matches the system preference
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyThemeFromSwift(prefersDark ? 'dark' : 'light');
+  </script>
+</body>
+</html>

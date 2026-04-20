@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "684CFAD2-6316-4B82-8931-2734D81B563D"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "80C660DE-F6EC-4512-9799-13E771705669"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSSwiftBridge/WebPageView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9ECC2967-4E54-49D3-A0DD-3FE0FC0668B4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSSwiftBridge/WebPageView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "handleBridgeMessage(_:proxy:router:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9ECC2967-4E54-49D3-A0DD-3FE0FC0668B4 - 247948bed932455d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JSSwiftBridge.WebPageView.PageAHandler.handleBridgeMessage(_: JSSwiftBridge.JSBridgeMessage, proxy: WebUI.WebViewProxy, router: JSSwiftBridge.JSMessageRouter) async throws -&gt; Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "JSSwiftBridge.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/holdapps/Documents/Work/JSSwiftBridge/JSSwiftBridge/WebPageView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79">
+               </Location>
+               <Location
+                  uuid = "9ECC2967-4E54-49D3-A0DD-3FE0FC0668B4 - 1144851a3583b0e5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for JSSwiftBridge.WebPageView.PageAHandler.handleBridgeMessage(_: JSSwiftBridge.JSBridgeMessage, proxy: WebUI.WebViewProxy, router: JSSwiftBridge.JSMessageRouter) async throws -&gt; Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "JSSwiftBridge.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/holdapps/Documents/Work/JSSwiftBridge/JSSwiftBridge/WebPageView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E2D05827-8AAD-4FAA-9AFC-BC3457AA98EC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSSwiftBridge/Bridges/ViewExtension/View+JSMessage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "onJSMessage(_:vm:action:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E2D05827-8AAD-4FAA-9AFC-BC3457AA98EC - 556e23239a9e65e5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftUI.View.onJSMessage&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_1_0: Swift.Decodable, &#x3c4;_1_1: Combine.ObservableObject&gt;(_: JSSwiftBridge.MessageHandler&lt;&#x3c4;_1_0&gt;, vm: &#x3c4;_1_1, action: (&#x3c4;_1_1, &#x3c4;_1_0) -&gt; ()) -&gt; some"
+                  moduleName = "JSSwiftBridge.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/holdapps/Documents/Work/JSSwiftBridge/JSSwiftBridge/Bridges/ViewExtension/View+JSMessage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15">
+               </Location>
+               <Location
+                  uuid = "E2D05827-8AAD-4FAA-9AFC-BC3457AA98EC - fb30d36dad2b3ab0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (&#x3c4;_1_0) -&gt; () in SwiftUI.View.onJSMessage&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_1_0: Swift.Decodable, &#x3c4;_1_1: Combine.ObservableObject&gt;(_: JSSwiftBridge.MessageHandler&lt;&#x3c4;_1_0&gt;, vm: &#x3c4;_1_1, action: (&#x3c4;_1_1, &#x3c4;_1_0) -&gt; ()) -&gt; some"
+                  moduleName = "JSSwiftBridge.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/holdapps/Documents/Work/JSSwiftBridge/JSSwiftBridge/Bridges/ViewExtension/View+JSMessage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3BE2AA0-EB14-4452-828B-3C5F05B595DB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSSwiftBridge/Bridges/ViewExtension/View+JSMessage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "onJSMessage(_:vm:action:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
